@@ -50,6 +50,7 @@ describe('building', () => {
     ['off the map', build('borehole', MAP.size, 0)],
     ['negative tiles', build('borehole', -1, 0)],
     ['fractional tiles', build('borehole', 1.5, 0)],
+    ['a road tile', build('borehole', MAP.roadOffset, 0)],
     ['an occupied tile', build('borehole', MAP.wardOffice.x, MAP.wardOffice.y)],
     ['a second ward office', build('ward_office', 0, 0)],
     ['a faith grant with no community', build('faith_land_grant', 0, 0)],
@@ -135,7 +136,7 @@ describe('ward economy over time', () => {
     const script: Action[][] = [
       [build('market', 3, 3), { type: 'siphon', amountKobo: 50_000_000 }],
       [build('faith_land_grant', 4, 4, { faith: 'mosque' })],
-      [build('faith_land_grant', 5, 4, { faith: 'church' })],
+      [build('faith_land_grant', 6, 4, { faith: 'church' })],
       [],
     ];
     const play = () => script.reduce((s, actions) => tick(s, actions).state, createGame(77));

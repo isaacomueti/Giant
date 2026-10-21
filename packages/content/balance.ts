@@ -56,7 +56,15 @@ export const MAP = {
   size: 24,
   /** Where the ward office stands on day one. */
   wardOffice: { x: 12, y: 12 },
+  /** Streets run along every row and column where index % roadEvery === roadOffset. */
+  roadEvery: 6,
+  roadOffset: 5,
 } as const;
+
+/** True if the tile is a street. Nothing can be built on a street. */
+export function isRoad(x: number, y: number): boolean {
+  return x % MAP.roadEvery === MAP.roadOffset || y % MAP.roadEvery === MAP.roadOffset;
+}
 
 export const BUILDINGS: Record<BuildingType, BuildingSpec> = {
   ward_office: {

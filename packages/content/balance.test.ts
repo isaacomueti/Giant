@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BUILDINGS, HEAT, MONTHLY, PRICES, START, naira } from './balance';
+import { BUILDINGS, HEAT, MAP, MONTHLY, PRICES, START, isRoad, naira } from './balance';
 import { APPROVAL_GROUPS, BUILDING_TYPES, FOOD_ITEMS } from './types';
 
 describe('balance', () => {
@@ -44,5 +44,11 @@ describe('balance', () => {
     const sorted = [...HEAT.thresholds].sort((a, b) => a - b);
     expect(HEAT.thresholds).toEqual(sorted);
     expect(HEAT.thresholds.every((t) => t > HEAT.min && t < HEAT.max)).toBe(true);
+  });
+
+  it('keeps the ward office off the streets', () => {
+    expect(isRoad(MAP.wardOffice.x, MAP.wardOffice.y)).toBe(false);
+    expect(isRoad(MAP.roadOffset, 0)).toBe(true);
+    expect(isRoad(0, MAP.roadOffset)).toBe(true);
   });
 });

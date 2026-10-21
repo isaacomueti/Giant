@@ -1,4 +1,4 @@
-import { BUILDINGS, MAP } from '@giant/content';
+import { BUILDINGS, MAP, isRoad } from '@giant/content';
 import type { BuildAction } from './actions';
 import type { GameState } from './state';
 
@@ -17,6 +17,7 @@ export function buildRejection(state: GameState, action: BuildAction): string | 
   ) {
     return 'That spot is outside Ward 7.';
   }
+  if (isRoad(x, y)) return 'You cannot build on the road.';
   if (state.buildings.some((b) => b.x === x && b.y === y))
     return 'Something is already built there.';
   if (spec.unique && state.buildings.some((b) => b.type === action.building)) {
