@@ -1,7 +1,14 @@
 export type AccountId = 'treasury' | 'personal';
 
 export type LedgerCategory =
-  'ward_allocation' | 'staff_salaries' | 'councillor_salary' | 'living_costs' | 'siphon';
+  | 'ward_allocation'
+  | 'staff_salaries'
+  | 'councillor_salary'
+  | 'living_costs'
+  | 'siphon'
+  | 'construction'
+  | 'upkeep'
+  | 'levies';
 
 export interface LedgerEntry {
   month: number;

@@ -1,4 +1,7 @@
 export * from './actions';
+export * from './approval';
+export * from './buildings';
+export * from './economy';
 export * from './events';
 export * from './heat';
 export * from './money';

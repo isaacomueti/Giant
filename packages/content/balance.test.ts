@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { HEAT, MONTHLY, START, naira } from './balance';
+import { BUILDINGS, HEAT, MONTHLY, PRICES, START, naira } from './balance';
+import { APPROVAL_GROUPS, BUILDING_TYPES, FOOD_ITEMS } from './types';
 
 describe('balance', () => {
   it('converts naira to integer kobo', () => {
@@ -8,8 +9,34 @@ describe('balance', () => {
   });
 
   it('keeps every money value in integer kobo', () => {
-    for (const value of [...Object.values(START), ...Object.values(MONTHLY)]) {
-      expect(Number.isSafeInteger(value)).toBe(true);
+    const money = [
+      START.treasuryKobo,
+      START.personalKobo,
+      START.fuelPriceKobo,
+      ...Object.values(MONTHLY),
+      ...Object.values(PRICES.baseKobo),
+      PRICES.baseFuelKobo,
+      ...Object.values(BUILDINGS).flatMap((b) => [b.buildCostKobo, b.upkeepKobo, b.levyKobo ?? 0]),
+    ];
+    for (const value of money) expect(Number.isSafeInteger(value)).toBe(true);
+  });
+
+  it('defines all ten building types', () => {
+    expect(BUILDING_TYPES).toHaveLength(10);
+    expect(Object.keys(BUILDINGS).sort()).toEqual([...BUILDING_TYPES].sort());
+  });
+
+  it('prices every basket item', () => {
+    for (const item of FOOD_ITEMS) {
+      expect(PRICES.baseKobo[item]).toBeGreaterThan(0);
+      expect(PRICES.householdQuantity[item]).toBeGreaterThan(0);
+    }
+  });
+
+  it('starts every approval group inside 0 to 100', () => {
+    for (const group of APPROVAL_GROUPS) {
+      expect(START.approval[group]).toBeGreaterThanOrEqual(0);
+      expect(START.approval[group]).toBeLessThanOrEqual(100);
     }
   });
 

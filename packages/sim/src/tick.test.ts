@@ -1,4 +1,4 @@
-import { HEAT, MONTHLY, START } from '@giant/content';
+import { BUILDINGS, HEAT, MONTHLY, START } from '@giant/content';
 import { describe, expect, it } from 'vitest';
 import type { Action } from './actions';
 import { siphonHeat } from './heat';
@@ -80,7 +80,8 @@ describe('money integrity', () => {
       START.treasuryKobo +
         MONTHLY.wardAllocationKobo -
         MONTHLY.staffSalariesKobo -
-        MONTHLY.councillorSalaryKobo,
+        MONTHLY.councillorSalaryKobo -
+        BUILDINGS.ward_office.upkeepKobo,
     );
     expect(state.personal.balanceKobo).toBe(
       START.personalKobo + MONTHLY.councillorSalaryKobo - MONTHLY.livingCostsKobo,
