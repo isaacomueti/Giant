@@ -531,3 +531,45 @@ Durations assume a solo founder working with AI tools until the Lagos launch; st
 - YarnGPT2 model card, Hugging Face
 - SoroTTS model card, Hugging Face
 - MetaHuman African Clothing pack, Fab
+
+## Phase 0 decisions
+
+Agreed on Oct 21, 2026 to fill gaps for the Ward 7 prototype. Later phases can revisit them.
+
+**Story set-up**
+
+- You start as the caretaker councillor of Ward 7, drawing a salary from the ward treasury.
+- You belong to the Green Eagle Party (GEP). To stand in the ward election at month 12 you need a ticket: take the Landlord's (GEP), or run without him for the People's Voice Movement (PVM) or as an independent.
+- Player set-up is just a name and gender, so characters address you correctly. Backgrounds wait for Phase 1.
+- The election comes after 12 in-game months, a compression of the four-year cycle for the prototype. Winning or losing ends the prototype with a summary of your record.
+
+**Heat consequences in Ward 7**
+
+| Heat | What happens |
+| --- | --- |
+| 30 | Rumours on Gist and in WhatsApp-style groups; a small approval drop for every group |
+| 50 | Ngozi Eze starts digging and the FIC opens a file; she brings it up in chat |
+| 70 | Your personal account is frozen (no spending, no siphoning) and elites withdraw support |
+| 90 | Arrest. The prototype ends with a "fallen" summary |
+
+**Money rules**
+
+- Building is refused when the treasury can't cover it.
+- If recurring costs push the treasury below zero, staff salaries go unpaid, approval drops each month it stays negative, and nothing can be built until it recovers. There is no borrowing in Phase 0.
+
+**Characters and chat**
+
+- Turns are monthly; chats happen between turns. An intent you accept in chat is queued as an action and the sim applies it at the next End Month.
+- Routine chat uses Claude Haiku 5.5; key story scenes use Claude Sonnet 5.5.
+- Each player gets 30 AI chats a day; after that, characters answer with pre-written lines.
+
+**Technology**
+
+- The simulation runs on the phone and saves locally, so the prototype works offline. Supabase holds only character memories, feedback and playtest logs, with anonymous sign-in so playtesters need no account.
+- Approved dependencies for Phase 0: `pixi.js` (map), `@supabase/supabase-js`, `@anthropic-ai/sdk` (in the chat Edge Function only), `@modelcontextprotocol/sdk` (voice server).
+
+**Clarifications**
+
+- Ward 7 uses five approval groups (youth, traders and market women, transport workers, families, elites). Church and mosque land grants are treated identically and raise families' and elites' approval; favouring one community lowers trust with every group.
+- The voice bake-off covers YarnGPT, 9jaLingo and Spitch. SoroTTS is left out because its licence is non-commercial.
+- Real brands on billboards (see Monetization) conflict with the no-real-brand-UI rule; settle this before Phase 1. Phase 0 shows no real brands.
