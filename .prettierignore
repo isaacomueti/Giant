@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+pnpm-lock.yaml
+docs/GDD.md
+CLAUDE.md
+PHASE0_TASKS.md
